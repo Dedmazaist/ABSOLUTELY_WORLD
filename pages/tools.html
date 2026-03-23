@@ -1,0 +1,42 @@
+<h2>🛠️ Инструменты</h2>
+
+<div class="card">
+    <h3>🎲 Бросок кубика</h3>
+    <button onclick="rollDice(20)">d20</button>
+    <button onclick="rollDice(12)">d12</button>
+    <button onclick="rollDice(10)">d10</button>
+    <button onclick="rollDice(8)">d8</button>
+    <button onclick="rollDice(6)">d6</button>
+    <button onclick="rollDice(4)">d4</button>
+    <p id="rollResult">Результат: -</p>
+</div>
+
+<div class="card">
+    <h3>💾 Заметки</h3>
+    <textarea id="notes" rows="4" placeholder="Ваши заметки..."></textarea>
+    <button onclick="saveNotes()">Сохранить</button>
+    <button onclick="loadNotes()">Загрузить</button>
+</div>
+
+<script>
+    // Функции для этого блока
+    function rollDice(sides) {
+        const result = Math.floor(Math.random() * sides) + 1;
+        document.getElementById('rollResult').innerHTML = `Результат d${sides}: ${result}`;
+    }
+    
+    function saveNotes() {
+        const notes = document.getElementById('notes').value;
+        localStorage.setItem('gameNotes', notes);
+        alert('Заметки сохранены!');
+    }
+    
+    function loadNotes() {
+        const notes = localStorage.getItem('gameNotes');
+        if (notes) {
+            document.getElementById('notes').value = notes;
+        } else {
+            alert('Нет сохраненных заметок');
+        }
+    }
+</script>
